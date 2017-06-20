@@ -1,0 +1,9 @@
+class Restaurants {
+  constructor () {
+
+  }
+
+  render () {
+
+  }
+}
