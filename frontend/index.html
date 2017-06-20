@@ -2,19 +2,44 @@
 <html>
 <head>
   <title>Wait Time App</title>
+  <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
   <link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
-  <h1>Wait Time App - Home</h1>
-  <form id="search-restaurants">
-    <input type="text" id="restaurant-name">
-    <button type="submit" id="submit">Search</button>
-  </form>
-  <p id="restaurant-info"></p>
+    <div class="ui fixed menu">
+      <div class="container">
+        <div class="header item">
+          Wait Time App
+        </div>
+        <a class="item">
+          Home
+        </a>
+      </div>
+    </div>
+
+    <div class="ui middle aligned center aligned grid" style="padding: 100px;">
+      <div class="column">
+        <h1 class="ui center aligned header">Find a Restaurant</h1>
+        <form class="ui large form" id="search-restaurants">
+          <div class="field">
+            <input type="text" id="restaurant-name" placeholder="Restaurant Name">
+          </div>
+        </form>
+        <div id="restaurants"></div>
+      </div>
+    </div>
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="src/adapters/zomatoAdapter.js"></script>
-  <script type="text/javascript" src="src/adapters/zomato.js"></script>
+
+  <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="semantic/dist/semantic.min.js"></script>
+
+  <script type="text/javascript" src="src/adapters/restaurantsAdapter.js"></script>
+  <script type="text/javascript" src="src/restaurants.js"></script>
+  <script type="text/javascript" src="src/app.js"></script>
   <script type="text/javascript" src="src/index.js"></script>
 </body>
 </html>
