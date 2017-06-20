@@ -53,5 +53,26 @@ var Zomato = {
         }
       })
     }
+  },
+  searchByRestaurant: function (keyword, scb, ecb) {
+    if (keyword == null) {
+      console.error('Enter a search keyword')
+    } else {
+      $.ajax({
+        url: url + '/search',
+        headers: zheader,
+        data: {
+          entity_id: 280, // new york city ID
+          entity_type: 'city',
+          q: keyword
+        },
+        success: function (response) {
+          scb(response)
+        },
+        error: function (res) {
+          ecb(res)
+        }
+      })
+    }
   }
 }
