@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
-    <div class="ui fixed menu">
+    <div class="ui menu">
       <div class="container">
         <div class="header item">
           Wait Time App
@@ -20,16 +20,15 @@
     <div class="ui middle aligned center aligned grid" style="padding: 100px;">
       <div class="column">
         <h1 class="ui center aligned header">Find a Restaurant</h1>
-        <form class="ui large form" id="search-restaurants">
-          <div class="field">
-            <input type="text" id="restaurant-name" placeholder="Restaurant Name">
-          </div>
-        </form>
-        <div id="restaurants"></div>
+        <div class="ui fluid input search">
+          <input class="prompt" type="text" id="restaurant-name" placeholder="Restaurant Name" autocomplete="off">
+          <div class="results" id="restaurants"></div>
+        </div>
       </div>
     </div>
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
 
   <script
     src="https://code.jquery.com/jquery-3.1.1.min.js"

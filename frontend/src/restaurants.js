@@ -1,8 +1,7 @@
 class Restaurants {
   constructor () {
-    this.searchRestaurants = document.getElementById('search-restaurants')
     this.restaurantName = document.getElementById('restaurant-name')
-    this.searchRestaurants.addEventListener('keyup', event => this.search())
+    this.restaurantName.addEventListener('keyup', _.debounce(event => this.search(), 250))
     this.restaurantsAdapter = new RestaurantsAdapter()
     this.restaurantsNode = document.getElementById('restaurants')
   }
@@ -12,11 +11,11 @@ class Restaurants {
     var keyword = this.restaurantName.value
     this.restaurantsAdapter.loadAllRestaurants(this.restaurants, keyword)
     .then(this.render.bind(this))
-    this.render()
   }
 
   render () {
-    console.log(this.restaurants)
-    this.restaurantsNode.innerHTML = `<p>${this.restaurants.join('</p><p>')}</p>`
+    // console.log(this.restaurants)
+    this.restaurantsNode.innerHTML = `<a class="result">${this.restaurants.join('</a><a class="result">')}</a>`
+    this.restaurantsNode.className = 'results transition visible'
   }
 }

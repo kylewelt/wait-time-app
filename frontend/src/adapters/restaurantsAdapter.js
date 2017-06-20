@@ -13,7 +13,7 @@ class RestaurantsAdapter {
     return this.getRestaurants()
       .then(json => {
         json.forEach(restaurant => {
-          if (restaurant['name'].toLowerCase().startsWith(keyword.toLowerCase())) {
+          if (restaurant['name'].toLowerCase().includes(keyword.toLowerCase())) {
             results.push(restaurant['name'])
           }
         })
