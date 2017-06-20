@@ -4419,3 +4419,31 @@ seed_data[:restaurants].each { |datum|
     user_rating: datum[:restaurant][:user_rating][:aggregate_rating]
   })
 }
+
+weekdays = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+  "Friday",
+  "Saturday",
+  "Sunday"
+]
+
+5000.times do
+  Submission.create({
+      wait_time: rand(0..90),
+      meal_time: rand(15..180),
+      day: weekdays[rand(0..12)],
+      time: Faker::Time.between(7.days.ago, Date.today, :all),
+      rating: rand(1..5),
+      comments: Faker::Hipster.paragraph,
+      restaurant: Restaurant.find(rand(1..100))
+    })
+  end

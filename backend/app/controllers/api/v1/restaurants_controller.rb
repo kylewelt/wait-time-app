@@ -5,4 +5,7 @@ class Api::V1::RestaurantsController < ApplicationController
     render json: restaurants, status: 200
   end
 
+  def show
+  end
+
 end

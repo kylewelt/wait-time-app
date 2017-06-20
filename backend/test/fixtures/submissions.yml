@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  wait_time: 1
+  meal_time: 1
+  date: 2017-06-20 13:09:13
+  rating: 1
+  comments: MyString
+  restaurant: one
+
+two:
+  wait_time: 1
+  meal_time: 1
+  date: 2017-06-20 13:09:13
+  rating: 1
+  comments: MyString
+  restaurant: two
