@@ -4,6 +4,11 @@ class Restaurants {
     this.restaurantName.addEventListener('keyup', _.debounce(event => this.search(), 250))
     this.restaurantsAdapter = new RestaurantsAdapter()
     this.restaurantsNode = document.getElementById('restaurants')
+    this.restaurantsNode.addEventListener('click', function (e) {
+      if (e.target && e.target.matches('a.result')) {
+        console.log(e.target.dataset.id)
+      }
+    })
   }
 
   search () {
@@ -13,9 +18,16 @@ class Restaurants {
     .then(this.render.bind(this))
   }
 
-  render () {
-    // console.log(this.restaurants)
-    this.restaurantsNode.innerHTML = `<a class="result">${this.restaurants.join('</a><a class="result">')}</a>`
+  displayResults () {
     this.restaurantsNode.className = 'results transition visible'
+    return (
+      this.restaurants.map(function (restaurant) {
+        return `<a class="result" data-id="${restaurant['id']}">${restaurant['name']}</a>`
+      }).join('')
+    )
+  }
+
+  render () {
+    this.restaurantsNode.innerHTML = this.displayResults()
   }
 }

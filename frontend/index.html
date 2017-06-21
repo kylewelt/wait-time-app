@@ -17,14 +17,22 @@
       </div>
     </div>
 
-    <div class="ui middle aligned center aligned grid" style="padding: 100px;">
-      <div class="column">
-        <h1 class="ui center aligned header">Find a Restaurant</h1>
-        <div class="ui fluid input search">
-          <input class="prompt" type="text" id="restaurant-name" placeholder="Restaurant Name" autocomplete="off">
-          <div class="results" id="restaurants"></div>
+    <div id="search-container">
+      <div class="ui middle aligned center aligned grid" style="padding: 100px;">
+        <div class="column">
+          <h1 class="ui center aligned header">Find a Restaurant</h1>
+          <div class="ui fluid input search">
+            <input class="prompt" type="text" id="restaurant-name" placeholder="Restaurant Name" autocomplete="off">
+            <div class="results" id="restaurants">
+              <!-- display search results here -->
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+
+    <div id="restaurant-container">
+
     </div>
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

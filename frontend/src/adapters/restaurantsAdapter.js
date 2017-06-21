@@ -14,7 +14,7 @@ class RestaurantsAdapter {
       .then(json => {
         json.forEach(restaurant => {
           if (restaurant['name'].toLowerCase().includes(keyword.toLowerCase())) {
-            results.push(restaurant['name'])
+            results.push({id: restaurant['id'], name: restaurant['name']})
           }
         })
       })
