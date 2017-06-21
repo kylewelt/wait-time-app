@@ -9,6 +9,7 @@ class CreateRestaurants < ActiveRecord::Migration[5.1]
       t.string :zipcode
       t.integer :average_cost_for_two
       t.string :thumb
+      t.string :image
       t.string :user_rating
 
       t.timestamps

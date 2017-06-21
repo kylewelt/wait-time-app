@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
-    <div class="ui menu">
+    <div class="ui menu" style="margin-bottom: 0;">
       <div class="container">
         <div class="header item">
           Wait Time App
@@ -18,13 +18,17 @@
     </div>
 
     <div id="search-container">
-      <div class="ui middle aligned center aligned grid" style="padding: 100px;">
-        <div class="column">
-          <h1 class="ui center aligned header">Find a Restaurant</h1>
-          <div class="ui fluid input search">
-            <input class="prompt" type="text" id="restaurant-name" placeholder="Restaurant Name" autocomplete="off">
-            <div class="results" id="restaurants">
-              <!-- display search results here -->
+      <div class="ui grid">
+        <div class="twelve wide column centered">
+          <div class="ui middle aligned center aligned grid">
+            <div class="column">
+              <h1 class="ui center aligned header">Find a Restaurant</h1>
+              <div class="ui fluid input search">
+                <input class="prompt" type="text" id="restaurant-name" placeholder="Restaurant Name" autocomplete="off">
+                <div class="results" id="restaurants">
+                  <!-- display search results here -->
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -32,6 +36,10 @@
     </div>
 
     <div id="restaurant-container">
+      <!-- display restaurant here -->
+    </div>
+
+    <div id="submission-container">
       <!-- display restaurant here -->
     </div>
 
@@ -47,6 +55,7 @@
   <script type="text/javascript" src="src/adapters/restaurantsAdapter.js"></script>
   <script type="text/javascript" src="src/restaurants.js"></script>
   <script type="text/javascript" src="src/restaurant.js"></script>
+  <script type="text/javascript" src="src/submission.js"></script>
   <script type="text/javascript" src="src/app.js"></script>
   <script type="text/javascript" src="src/index.js"></script>
 </body>

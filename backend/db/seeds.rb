@@ -4416,6 +4416,7 @@ seed_data[:restaurants].each { |datum|
     zipcode: datum[:restaurant][:location][:zipcode],
     average_cost_for_two: datum[:restaurant][:average_cost_for_two],
     thumb: datum[:restaurant][:thumb],
+    image: datum[:restaurant][:featured_image],
     user_rating: datum[:restaurant][:user_rating][:aggregate_rating]
   })
 }
@@ -4436,12 +4437,36 @@ weekdays = [
   "Sunday"
 ]
 
-5000.times do
+1000.times do
   Submission.create({
       wait_time: rand(0..90),
       meal_time: rand(15..180),
       day: weekdays[rand(0..12)],
-      time: Faker::Time.between(7.days.ago, Date.today, :all),
+      time: Faker::Time.between(7.days.ago, Date.today, :morning),
+      rating: rand(1..5),
+      comments: Faker::Hipster.paragraph,
+      restaurant: Restaurant.find(rand(1..100))
+    })
+  end
+
+2000.times do
+  Submission.create({
+      wait_time: rand(0..90),
+      meal_time: rand(15..180),
+      day: weekdays[rand(0..12)],
+      time: Faker::Time.between(7.days.ago, Date.today, :afternoon),
+      rating: rand(1..5),
+      comments: Faker::Hipster.paragraph,
+      restaurant: Restaurant.find(rand(1..100))
+    })
+  end
+
+3000.times do
+  Submission.create({
+      wait_time: rand(0..90),
+      meal_time: rand(15..180),
+      day: weekdays[rand(0..12)],
+      time: Faker::Time.between(7.days.ago, Date.today, :evening),
       rating: rand(1..5),
       comments: Faker::Hipster.paragraph,
       restaurant: Restaurant.find(rand(1..100))

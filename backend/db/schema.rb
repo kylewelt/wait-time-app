@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170620170913) do
     t.string "zipcode"
     t.integer "average_cost_for_two"
     t.string "thumb"
+    t.string "image"
     t.string "user_rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

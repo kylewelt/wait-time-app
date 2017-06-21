@@ -14,12 +14,25 @@ class Restaurants {
   }
 
   displayResults () {
-    this.restaurantsNode.className = 'results transition visible'
-    return (
-      this.restaurants.map(function (restaurant) {
-        return `<a class="result" data-id="${restaurant['id']}">${restaurant['name']}</a>`
-      }).join('')
-    )
+    if (this.restaurantName.value === '') {
+      this.restaurantsNode.className = 'results transition'
+    } else {
+      this.restaurantsNode.className = 'results transition visible'
+    }
+
+    let results = this.restaurants.map(function (restaurant) {
+      return `<a class="result" data-id="${restaurant['id']}">${restaurant['name']}</a>`
+    }).join('')
+
+    if (results.length > 0) {
+      return results
+    } else {
+      return (
+        `<div class="ui message">
+          <p>No matching restaurants were found. Please try your search again.</p>
+        </div>`
+      )
+    }
   }
 
   render () {
