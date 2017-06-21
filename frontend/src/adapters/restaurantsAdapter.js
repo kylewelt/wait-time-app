@@ -28,8 +28,9 @@ class RestaurantsAdapter {
 
   }
 
-  getRestaurant () {
-
+  getRestaurant (id) {
+    return fetch(`${this.url}/${id}`)
+      .then(resp => resp.json())
   }
 
 }

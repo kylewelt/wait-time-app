@@ -4,11 +4,6 @@ class Restaurants {
     this.restaurantName.addEventListener('keyup', _.debounce(event => this.search(), 250))
     this.restaurantsAdapter = new RestaurantsAdapter()
     this.restaurantsNode = document.getElementById('restaurants')
-    this.restaurantsNode.addEventListener('click', function (e) {
-      if (e.target && e.target.matches('a.result')) {
-        console.log(e.target.dataset.id)
-      }
-    })
   }
 
   search () {
