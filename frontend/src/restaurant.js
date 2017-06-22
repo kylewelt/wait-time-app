@@ -3,6 +3,7 @@ class Restaurant {
   constructor (id) {
     this.id = id
     this.restaurantsAdapter = new RestaurantsAdapter()
+    this.submissions = new Submissions()
     this.restaurantContainer = document.getElementById('restaurant-container')
     this.data = {}
   }
@@ -32,7 +33,7 @@ class Restaurant {
 
   renderForm () {
     return (
-      `<div class="ui grid">
+      `<div class="ui padded divided grid">
         <div class="eight wide column">
           <div class="ui container segment">
             <form class="ui form" id="submission" data-id="${this.id}">
@@ -110,8 +111,12 @@ class Restaurant {
     )
   }
 
+  renderSubmissions() {
+    return this.submissions.render(this.data.submissions)
+  }
+
   render () {
-    this.restaurantContainer.innerHTML = this.renderHeader() + this.renderForm()
+    this.restaurantContainer.innerHTML = this.renderHeader() + this.renderForm() + this.renderSubmissions()
   }
 
 }

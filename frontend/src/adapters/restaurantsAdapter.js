@@ -2,6 +2,7 @@ class RestaurantsAdapter {
 
   constructor () {
     this.url = 'http://localhost:3000/api/v1/restaurants'
+    this.submissionUrl = 'http://localhost:3000/api/v1/submissions'
   }
 
   getRestaurants () {
@@ -31,6 +32,17 @@ class RestaurantsAdapter {
   getRestaurant (id) {
     return fetch(`${this.url}/${id}`)
       .then(resp => resp.json())
+  }
+
+  createSubmission (content) {
+    const submissionCreateParams = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({submission: content})
+    }
+    return fetch(this.submissionUrl, submissionCreateParams).then(resp => resp.json())
   }
 
 }
