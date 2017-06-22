@@ -33,9 +33,9 @@ class Restaurant {
 
   renderForm () {
     return (
-      `<div class="ui padded divided grid">
+      `<div class="ui padded divided grid" id="new-submission-container">
         <div class="eight wide column">
-          <div class="ui container segment">
+          <div class="ui container segment" id="new-submission">
             <form class="ui form" id="submission" data-id="${this.id}">
               <h2 class="ui dividing header">Visit Information</h2>
               <div class="field">
@@ -43,57 +43,24 @@ class Restaurant {
                 <input type="number" id="wait-time" name="wait-time" min="5" max="420" placeholder="Wait Time (In Minutes)">
               </div>
               <div class="field">
-                <label>Meal Time</label>
-                <input type="number" id="meal-time" name="meal-time"  min="5" max="420" placeholder="Meal Time (In Minutes)">
+                <label>Meal Duration</label>
+                <input type="number" id="meal-time" name="meal-time"  min="5" max="420" placeholder="Duration (In Minutes)">
               </div>
-              <div class="grouped fields" id="day-radios">
-                <label>Day of visit:</label>
-                <div class="field">
-                  <div class="ui radio checkbox">
-                    <input type="radio" id="sunday" name="day" checked value="Sunday">
-                    <label>Sunday</label>
-                  </div>
-                </div>
-                <div class="field">
-                  <div class="ui radio checkbox">
-                    <input type="radio" id="monday" name="day" value="Monday">
-                    <label>Monday</label>
-                  </div>
-                </div>
-                <div class="field">
-                  <div class="ui radio checkbox">
-                    <input type="radio" id="tuesday" name="day" value="Tuesday">
-                    <label>Tuesday</label>
-                  </div>
-                </div>
-                <div class="field">
-                  <div class="ui radio checkbox">
-                    <input type="radio" id="wednesday" name="day"  value="Wednesday">
-                    <label>Wednesday</label>
-                  </div>
-                </div>
-                <div class="field">
-                  <div class="ui radio checkbox">
-                    <input type="radio" id="thursday" name="day" value="Thursday">
-                    <label>Thursday</label>
-                  </div>
-                </div>
-                <div class="field">
-                  <div class="ui radio checkbox">
-                    <input type="radio" id="friday" name="day" value="Friday">
-                    <label>Friday</label>
-                  </div>
-                </div>
-                <div class="field">
-                  <div class="ui radio checkbox">
-                    <input type="radio" id="saturday" name="day" value="Saturday">
-                    <label>Saturday</label>
-                  </div>
-                </div>
+              <div class="field">
+                <label>Day of Visit</label>
+                <select class="ui fluid dropdown" id="day">
+                  <option value="Sunday">Sunday</option>
+                  <option value="Monday">Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                  <option value="Saturday">Saturday</option>
+                </select>
               </div>
               <div class="field">
                 <label>Time Visited</label>
-                <input type="time" id="time-visited" name="time-visited" placeholder="Time">
+                <input type="time" id="time-visited" name="time-visited" value="${`${(new Date()).getHours()}:${(new Date).getMinutes()}`}">
               </div>
               <div class="field">
                 <label>Rating</label>
@@ -111,8 +78,17 @@ class Restaurant {
     )
   }
 
-  renderSubmissions() {
+  renderSubmissions () {
     return this.submissions.render(this.data.submissions)
+  }
+
+  renderUserSubmission (submission) {
+    return (
+      `<h5>${submission.day} at ${(new Date(submission.time)).toTimeString()}</h5>
+      <p>Your rating: ${submission.rating}</p>
+      <p>You waited ${submission.wait_time} minutes for a ${submission.meal_time} minute meal. Great job!</p>
+      <p>Here's what you thought just now: ${submission.comments}</p>`
+    )
   }
 
   render () {

@@ -5,11 +5,10 @@ class Submissions {
   }
 
   renderSubmission (array) {
-    array.forEach(submission => this.submissions.push(new Submission(submission)))
+    array.forEach(submission => this.submissions.unshift(new Submission(submission)))
   }
 
   renderComments () {
-
     return (
       `<div class="ui padded grid">
         <div class="sixteen wide column">

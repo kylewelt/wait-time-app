@@ -8,6 +8,7 @@ class Submission {
     this.rating = data.rating
     this.time = data.time
     this.wait_time = data.wait_time
+    this.restaurant_id = data.restaurant_id
   }
 
   render () {
