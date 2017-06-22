@@ -41,9 +41,11 @@ class App {
         this.restaurant = new Restaurant(this.submission.restaurant_id)
         this.restaurantsAdapter.createSubmission(this.submission)
         this.newSubmission = document.getElementById('new-submission')
-        $('#new-submission-container').transition('scale')
+        // var height = document.getElementById("main-img").getBoundingClientRect().top
+        // document.body.scrollTop() = height
+        $('#new-submission-container').transition({animation: 'fly left', duration: '2s'})
         this.newSubmission.innerHTML = this.restaurant.renderUserSubmission(this.submission)
-        $('#new-submission-container').transition('scale')
+        $('#new-submission-container').transition({animation: 'fly right', duration: '2s'})
       }
     })
   }

@@ -16,7 +16,7 @@ class Restaurant {
 
   renderHeader () {
     return (
-      `<img class="ui fluid image" src="${this.data.image ? this.data.image : 'http://media.salon.com/2014/08/guy_fieri.jpg'}">
+      `<img id="main-img" class="ui fluid image" src="${this.data.image ? this.data.image : 'http://media.salon.com/2014/08/guy_fieri.jpg'}">
       <div class="ui padded divided grid">
         <div class="eight wide column">
           <h1 class="ui title-header">${this.data.name}</h1>
