@@ -6,6 +6,7 @@ class Restaurant {
     this.submissions = new Submissions()
     this.restaurantContainer = document.getElementById('restaurant-container')
     this.data = {}
+    this.dailyData = {}
   }
 
   displayRestaurant () {
@@ -24,6 +25,7 @@ class Restaurant {
           <h5 class="ui title-header">${this.data.locality}</h5>
         </div>
         <div class="eight wide column">
+          <h1 class="ut title-header">Current Average Wait Time: ${this.waitNow()} minutes</h1>
           <h1 class="ui title-header">${this.data.user_rating} / 5</h1>
           <h5 class="ui title-header">$${this.data.average_cost_for_two} for two</h5>
         </div>
@@ -60,7 +62,7 @@ class Restaurant {
               </div>
               <div class="field">
                 <label>Time Visited</label>
-                <input type="time" id="time-visited" name="time-visited" value="${`${(new Date()).getHours()}:${(new Date).getMinutes()}`}">
+                <input type="time" id="time-visited" name="time-visited" value="${`${(new Date()).getHours()}:${(new Date()).getMinutes()}`}">
               </div>
               <div class="field">
                 <label>Rating</label>
@@ -74,6 +76,7 @@ class Restaurant {
             </form>
           </div>
         </div>
+        ${this.renderHeatMap()}
       </div>`
     )
   }
@@ -87,12 +90,83 @@ class Restaurant {
       `<h5>${submission.day} at ${(new Date(submission.time)).toTimeString()}</h5>
       <p>Your rating: ${submission.rating}</p>
       <p>You waited ${submission.wait_time} minutes for a ${submission.meal_time} minute meal. Great job!</p>
-      <p>Here's what you thought just now: ${submission.comments}</p>`
+      <p>Here's what you thought about your experience: ${submission.comments}</p>`
     )
   }
 
+  renderWaitTimes () {
+    var self = this
+    this.data.submissions.forEach(function (submission) {
+      self.dailyData[submission.day] = {}
+    })
+    this.data.submissions.forEach(function (submission) {
+      self.dailyData[submission.day][new Date(submission.time).getHours()] ? self.dailyData[submission.day][new Date(submission.time).getHours()].push(submission.wait_time) : self.dailyData[submission.day][new Date(submission.time).getHours()] = [submission.wait_time]
+    })
+  }
+
+  averageWait (day, hour) {
+    if (this.dailyData[day][hour]) {
+      return this.dailyData[day][hour].reduce(function (acc, val) { return acc + val }) / this.dailyData[day][hour].length
+    } else {
+      return 0
+    }
+  }
+
+  waitNow () {
+    this.renderWaitTimes()
+    var now = new Date()
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    return this.averageWait(days[now.getDay()], now.getHours())
+  }
+
+  hourLoop (day) {
+    var arr = []
+    for (let i = 0; i < 24; i++) {
+      arr[i] = this.averageWait(day, i)
+    }
+    return arr
+  }
+
+  dayLoop () {
+    var weekData = []
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    for (let i = 0; i < days.length; i++) {
+      weekData.push(this.hourLoop(days[i]))
+    }
+    return weekData
+  }
+  renderHeatMap () {
+    // this.renderWaitTimes()
+    return (`
+      <div class="eight wide column">
+        <div class="ui container segment">
+          <div id="heat-map"></div>
+          </div>
+    </div>
+    `)
+  }
+
+  call () {
+    var layout = {
+      title: 'Reported Wait Times'
+    }
+    var data = [
+      {
+        z: this.dayLoop(),
+        y: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        x: ['Midnight', '1 AM', '2 AM', '3 AM', '4 AM', '5 AM', '6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', 'Noon', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM', '10 PM', '11 PM'],
+        type: 'heatmap'
+      }
+    ]
+    Plotly.newPlot('heat-map', data, layout)
+  }
+
   render () {
-    this.restaurantContainer.innerHTML = this.renderHeader() + this.renderForm() + this.renderSubmissions()
+    this.restaurantContainer.innerHTML =
+      this.renderHeader() +
+      this.renderForm() +
+      this.renderSubmissions()
+    this.call()
   }
 
 }

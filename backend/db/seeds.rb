@@ -4437,19 +4437,19 @@ weekdays = [
   "Sunday"
 ]
 
-1000.times do
+5000.times do
   Submission.create({
       wait_time: rand(0..90),
       meal_time: rand(15..180),
       day: weekdays[rand(0..12)],
-      time: Faker::Time.between(7.days.ago, Date.today, :morning),
+      time: Faker::Time.between(7.days.ago, Date.today, :all),
       rating: rand(1..5),
       comments: Faker::Hipster.paragraph,
       restaurant: Restaurant.find(rand(1..100))
     })
   end
 
-2000.times do
+5000.times do
   Submission.create({
       wait_time: rand(0..90),
       meal_time: rand(15..180),
@@ -4461,7 +4461,7 @@ weekdays = [
     })
   end
 
-3000.times do
+8000.times do
   Submission.create({
       wait_time: rand(0..90),
       meal_time: rand(15..180),
@@ -4472,3 +4472,15 @@ weekdays = [
       restaurant: Restaurant.find(rand(1..100))
     })
   end
+
+  5000.times do
+    Submission.create({
+        wait_time: rand(0..90),
+        meal_time: rand(15..180),
+        day: weekdays[rand(0..12)],
+        time: Faker::Time.between(7.days.ago, Date.today, :night),
+        rating: rand(1..5),
+        comments: Faker::Hipster.paragraph,
+        restaurant: Restaurant.find(rand(1..100))
+      })
+    end

@@ -4,6 +4,7 @@
   <title>Wait Time App</title>
   <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
   <link rel="stylesheet" type="text/css" href="styles/style.css">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <div class="ui menu" style="margin-bottom: 0;">
@@ -11,19 +12,19 @@
         <div class="header item">
           Wait Time App
         </div>
-        <a class="item">
+        <a class="item" href=".">
           Home
         </a>
       </div>
     </div>
 
     <div id="search-container">
-      <div class="ui grid">
+      <div class="ui grid padded">
         <div class="twelve wide column centered">
-          <div class="ui middle aligned center aligned grid">
+          <div class="ui middle aligned aligned grid">
             <div class="column">
               <h1 class="ui center aligned header">Find a Restaurant</h1>
-              <div class="ui fluid input search">
+              <div class="ui fluid input search loading">
                 <input class="prompt" type="text" id="restaurant-name" placeholder="Restaurant Name" autocomplete="off">
                 <div class="results" id="restaurants">
                   <!-- display search results here -->
@@ -54,7 +55,6 @@
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
     crossorigin="anonymous"></script>
   <script src="semantic/dist/semantic.min.js"></script>
-
   <script type="text/javascript" src="src/adapters/restaurantsAdapter.js"></script>
   <script type="text/javascript" src="src/restaurants.js"></script>
   <script type="text/javascript" src="src/restaurant.js"></script>

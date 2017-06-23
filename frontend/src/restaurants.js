@@ -7,6 +7,12 @@ class Restaurants {
   }
 
   search () {
+    $('body').append(
+      `<div class="ui" id="loader">
+        <div class="ui active inverted dimmer">
+          <div class="ui text loader">Guy Fieri is searching...</div>
+        </div>
+      </div>`)
     this.restaurants = []
     var keyword = this.restaurantName.value
     this.restaurantsAdapter.loadAllRestaurants(this.restaurants, keyword)
@@ -15,8 +21,10 @@ class Restaurants {
 
   displayResults () {
     if (this.restaurantName.value === '') {
+      $('#loader').remove()
       this.restaurantsNode.className = 'results transition'
     } else {
+      $('#loader').remove()
       this.restaurantsNode.className = 'results transition visible'
     }
 
