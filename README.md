@@ -1,4 +1,7 @@
 # What's the Wait?
+
+[Product Demo](https://github.com/kylewelt/whats-the-wait/blob/master/demo.gif)
+
 # Description
 _What's the Wait?_ is a tourist’s search tool for finding reviews, ratings, and wait times for popular NYC restaurants. With _What's the Wait?_, users can search and select the top 100 most popular NYC restaurants returned from the Zomato API. Once choosing a restaurant, users can view basic restaurant information, see past user reviews, and see the busiest visit times for the restaurant. Users are able to post their own reviews for the restaurant, as well as their personal experience and wait time for future patrons to see.
 # Technologies in Use
